@@ -12,7 +12,7 @@ async def main():
     
 
 async def run_frontend():
-    subprocess.run("/Users/martingeorge/.bun/bin/bun", )
+    subprocess.run("/Users//.bun/bin/bun", )
 
 async def run_backend():
     config = Config(app=j2live_api.API)
