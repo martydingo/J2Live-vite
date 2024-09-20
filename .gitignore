@@ -1,3 +1,5 @@
 venv
 *.pyc
 test.sh
+node_modules
+setup-env.sh
