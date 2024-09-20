@@ -1,13 +1,26 @@
 from .api import API
+from uvicorn import Server, Config
 
-import uvicorn, asyncio
+import asyncio, subprocess
 
 j2live_api = API()
 
-taskGroup = asyncio.TaskGroup()
-
 async def main():
-    async with asyncio.TaskGroup() as task:
-        task.create_task(uvicorn.run(j2live_api.API))
+    async with asyncio.TaskGroup() as taskGroup:
+        taskGroup.create_task(run_frontend())
+        taskGroup.create_task(run_backend())
+    
 
-main()
+async def run_frontend():
+    subprocess.run("/Users/martingeorge/.bun/bin/bun", )
+
+async def run_backend():
+    config = Config(app=j2live_api.API)
+    server = Server(config=config)
+    await server.serve()
+    
+
+    
+
+
+asyncio.run(main())
