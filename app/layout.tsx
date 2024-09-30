@@ -6,7 +6,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html className="dark" lang="en">
+      <head>
+        <title>J2Live</title>
+      </head>
       <body>
         {children}
       </body>

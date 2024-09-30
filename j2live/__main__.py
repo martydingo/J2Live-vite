@@ -1,7 +1,11 @@
 from .api import API
 from uvicorn import Server, Config
-
+from argparse import ArgumentParser
 import asyncio, subprocess
+
+argParser = ArgumentParser()
+argParser.add_argument("-e", "--environment", default="production")
+args = argParser.parse_args()
 
 j2live_api = API()
 
@@ -13,7 +17,10 @@ async def main():
 
 
 async def run_frontend():
-    subprocess.Popen(["node", ".next/standalone/server.js"])
+    if args.environment == "production":
+        subprocess.Popen(["node", ".next/standalone/server.js"])
+    elif args.environment == "development":
+        subprocess.Popen(["bun", "dev"])
 
 
 async def run_backend():
