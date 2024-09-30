@@ -16,8 +16,8 @@ async function renderTemplate(yamlVariables: string, jinja2Template: string) {
             }),
             mode: 'cors',
         })
-        const postResponse = await postRequest.json()        
-        return postResponse['message']
+        const postResponse = await postRequest.json()
+        return JSON.parse(JSON.stringify(postResponse['message']))
 
     }
     catch (err) { return err }
@@ -25,8 +25,8 @@ async function renderTemplate(yamlVariables: string, jinja2Template: string) {
 
 export default function App() {
     const [formData, setFormData] = useState({
-        yamlVariables: "",
-        jinjaTemplate: "",
+        yamlVariables: "x:\n  - name: abc\n  - name: def",
+        jinjaTemplate: "{% for y in x %}\n{{ y }}\n{% endfor %}",
         generatedOutput: ""
     });
 
@@ -34,14 +34,13 @@ export default function App() {
         const { name, value } = e.target;
         setFormData((prevState) => ({ ...prevState, [name]: value }));
         let generatedOutput
-        if(name === "yamlVariables"){
+        if (name === "yamlVariables") {
             generatedOutput = renderTemplate(value, formData.jinjaTemplate)
         } else {
             generatedOutput = renderTemplate(formData.yamlVariables, value)
         }
         Promise.all([generatedOutput]).then((output) => {
-            console.log(output)
-            setFormData((prevState) => ({...prevState, generatedOutput: output as unknown as string}))
+            setFormData((prevState) => ({ ...prevState, generatedOutput: output as unknown as string }))
         })
 
 
