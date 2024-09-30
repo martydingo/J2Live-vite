@@ -60,11 +60,6 @@ export default function App() {
                     <Textarea className="h-full font-mono" name="jinjaTemplate" id="jinja2-template" value={formData.jinjaTemplate} onChange={handleChange} />
                 </div>
             </div>
-            {/* <div className="basis-1/6 flex justify-center self-center">
-                <Button>
-                    Generate
-                </Button>
-            </div> */}
             <div className="basis-1/3">
                 <Label htmlFor="generated-output">Generated Output</Label>
                 <Textarea className="h-full" name="generatedOutput" id="generated-output" value={formData.generatedOutput} onChange={handleChange} disabled />
