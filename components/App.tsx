@@ -28,7 +28,6 @@ export default function App() {
         yamlVariables: "",
         jinjaTemplate: "",
         generatedOutput: ""
-        // ... potentially many more individual properties
     });
 
     const handleChange = (e) => {
@@ -44,9 +43,7 @@ export default function App() {
             console.log(output)
             setFormData((prevState) => ({...prevState, generatedOutput: output as unknown as string}))
         })
-        // const yamlVars = document.getElementById("yaml-variables")?.innerText
-        // const jinja2Template = document.getElementById("jinja2-template")?.innerText
-        // const generatedOutput = renderTemplate(yamlVars!, jinja2Template!)
+
 
     };
 
